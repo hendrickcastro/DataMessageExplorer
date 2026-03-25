@@ -9,12 +9,26 @@ Downloads
 Go to the Releases page to get the latest version:
 https://github.com/hendrickcastro/DataMessageExplorer/releases
 
-- Windows: download DataMessageExplorer-windows.zip
-- macOS: download DataMessageExplorer-macos.zip
+- Windows: DataMessageExplorer-windows.zip
+- macOS: DataMessageExplorer-macos.dmg
 
-Extract the zip and run the application. On macOS, if you get a security warning, right-click the app and select Open.
 
-The application checks for updates automatically on startup. You can also click the "Check Updates" button in the toolbar at any time.
+Install on Windows
+------------------
+
+Extract the zip and run DataMessage Explorer.exe.
+
+
+Install on macOS
+----------------
+
+Open Terminal and paste this single command:
+
+    curl -sL https://github.com/hendrickcastro/DataMessageExplorer/releases/latest/download/DataMessageExplorer-macos.dmg -o /tmp/dme.dmg && hdiutil attach /tmp/dme.dmg -nobrowse -mountpoint /tmp/dme_mount && rm -rf "/Applications/DataMessage Explorer.app" && cp -R "/tmp/dme_mount/DataMessage Explorer.app" /Applications/ && xattr -rc "/Applications/DataMessage Explorer.app" && codesign --force --deep --sign - "/Applications/DataMessage Explorer.app" && hdiutil detach /tmp/dme_mount -quiet && rm /tmp/dme.dmg && open "/Applications/DataMessage Explorer.app"
+
+This downloads the latest version, installs it in Applications, removes macOS security restrictions, and launches the app. No warnings, no popups.
+
+Future updates are handled automatically from within the app. You only need to run this command once for the initial install.
 
 
 Azure Cosmos DB
