@@ -3,6 +3,63 @@ DataMessage Explorer
 
 Desktop application for Windows and macOS to manage Azure Cosmos DB, Azure Service Bus, and Redis from a single interface. Dark and light themes, tabbed panels, keyboard shortcuts, and automatic updates included.
 
+Screenshots
+-----------
+
+> See [capture.md](capture.md) for the full capture checklist.
+
+### General
+
+| | |
+|---|---|
+| ![Dark theme](docs/images/01-main-dark.png) | ![Light theme](docs/images/02-main-light.png) |
+| Dark theme | Light theme |
+
+### Connections
+
+| | |
+|---|---|
+| ![Connection dialog](docs/images/03-connection-dialog.png) | ![Connections tree](docs/images/04-connections-tree.png) |
+| Connection dialog | Sidebar with categories and colors |
+
+### Azure Cosmos DB
+
+| | |
+|---|---|
+| ![Items browser](docs/images/05-cosmos-items.png) | ![Document viewer](docs/images/06-cosmos-document-viewer.png) |
+| Paginated items browser with filter bar | JSON viewer/editor with code folding |
+| ![Query editor](docs/images/07-cosmos-query.png) | ![Query results](docs/images/08-cosmos-query-results.png) |
+| SQL editor with syntax highlighting | Results + record details side panel |
+| ![AND/OR filter](docs/images/09-cosmos-filter-buttons.png) | ![Templates](docs/images/10-cosmos-templates.png) |
+| AND \| \|C\| \| OR filter buttons on properties | SQL templates panel |
+| ![Saved queries](docs/images/11-cosmos-saved-queries.png) | ![Import/Export](docs/images/12-cosmos-import-export.png) |
+| Saved queries with categories and favorites | Import/Export documents |
+| ![Scripts](docs/images/13-cosmos-scripts.png) | ![Metrics](docs/images/14-cosmos-metrics.png) |
+| Stored procedures / UDFs / Triggers | Container settings and metrics |
+
+### Azure Service Bus
+
+| | |
+|---|---|
+| ![SB tree](docs/images/15-sb-tree.png) | ![Peek messages](docs/images/16-sb-peek.png) |
+| Queues/Topics with A/D/S counts | Peek with body, headers, properties |
+| ![Send message](docs/images/17-sb-send.png) | ![Message actions](docs/images/18-sb-message-actions.png) |
+| Send message with queue selector | Complete, dead-letter, forward actions |
+| ![Queue settings](docs/images/19-sb-queue-settings.png) | ![Saved messages](docs/images/20-sb-saved-messages.png) |
+| Queue settings and duplicate | Saved message templates |
+
+### Redis
+
+| | |
+|---|---|
+| ![Redis tree](docs/images/21-redis-tree.png) | ![Stream entries](docs/images/22-redis-stream.png) |
+| Streams / Lists / Keys by prefix | Stream entries with consumer groups |
+| ![List entries](docs/images/23-redis-list.png) | ![Keys by prefix](docs/images/24-redis-keys.png) |
+| List viewer with pagination | Keys grouped by prefix |
+| ![Key filter](docs/images/25-redis-key-filter.png) | |
+| Key filter (SCAN MATCH) | |
+
+
 Downloads
 ---------
 
