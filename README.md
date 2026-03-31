@@ -1,317 +1,331 @@
-DataMessage Explorer
-====================
+# DataMessage Explorer
 
-Desktop application for Windows and macOS to manage Azure Cosmos DB, Azure Service Bus, and Redis from a single interface. Dark and light themes, tabbed panels, keyboard shortcuts, and automatic updates included.
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS-blue)](https://github.com/hendrickcastro/DataMessageExplorer/releases)
+[![License](https://img.shields.io/badge/License-Proprietary-red)]()
+[![Azure Cosmos DB](https://img.shields.io/badge/Azure-Cosmos%20DB-0078D4)](https://azure.microsoft.com/services/cosmos-db/)
+[![Azure Service Bus](https://img.shields.io/badge/Azure-Service%20Bus-0078D4)](https://azure.microsoft.com/services/service-bus/)
+[![Redis](https://img.shields.io/badge/Redis-Supported-DC382D)](https://redis.io/)
+[![SQL Server](https://img.shields.io/badge/SQL%20Server-2016%2B-CC2927)](https://www.microsoft.com/sql-server)
+[![Azure SQL](https://img.shields.io/badge/Azure%20SQL-Supported-0078D4)](https://azure.microsoft.com/services/sql-database/)
+[![PySide6](https://img.shields.io/badge/PySide6-Qt%20for%20Python-41CD52)](https://doc.qt.io/qtforpython/)
+[![Auto Update](https://img.shields.io/badge/Updates-Automatic-brightgreen)]()
+[![Maintenance](https://img.shields.io/badge/Maintained-Yes-brightgreen)](https://github.com/hendrickcastro/DataMessageExplorer/graphs/commit-activity)
 
-Screenshots
------------
+A native desktop application for **Windows** and **macOS** to manage **Azure Cosmos DB**, **Azure Service Bus**, **Redis**, and **SQL Server** from a single interface. Dark/light themes, tabbed panels, keyboard shortcuts, and automatic updates included.
 
-> See [capture.md](capture.md) for the full capture checklist.
+---
 
-### General
+## Overview
 
-| | |
-|---|---|
+| Dark Theme | Light Theme |
+|:---:|:---:|
 | ![Dark theme](docs/images/01-main-dark.png) | ![Light theme](docs/images/02-main-light.png) |
-| Dark theme | Light theme |
 
-### Connections
+---
 
-| | |
-|---|---|
+## Quick Install
+
+### Windows
+
+Download `DataMessageExplorer-windows.zip` from the [Releases](https://github.com/hendrickcastro/DataMessageExplorer/releases) page, extract, and run **DataMessage Explorer.exe**.
+
+### macOS (one command)
+
+```bash
+curl -sL https://raw.githubusercontent.com/hendrickcastro/DataMessageExplorer/master/install.sh | bash
+```
+
+Downloads the latest `.dmg`, installs to `/Applications`, removes macOS quarantine restrictions, and launches the app. Future updates are handled automatically from within the app.
+
+---
+
+## Connection Management
+
+Add connections for any of the four services through a unified dialog with service type selector, connection string (masked), category organization with color picker, and async test connection.
+
+| Connection Dialog | Sidebar with Categories |
+|:---:|:---:|
 | ![Connection dialog](docs/images/03-connection-dialog.png) | ![Connections tree](docs/images/04-connections-tree.png) |
-| Connection dialog | Sidebar with categories and colors |
 
-### Azure Cosmos DB
+- Service type selector: Cosmos DB, Service Bus, Redis, SQL Server
+- Category organization with color picker
+- Test connection button with async validation
+- Edit and delete from tree context menu
+- Categories scoped per service
+- Stored locally in `~/.datamessage_explorer/connections.json` (encoded)
 
-| | |
-|---|---|
+---
+
+## Azure Cosmos DB
+
+### Items Browser
+
+Browse documents in a table with dynamic columns, configurable page size (20/50/100), column sorting, and timestamp formatting (epoch to UTC).
+
+| Items Panel | Document Viewer |
+|:---:|:---:|
 | ![Items browser](docs/images/05-cosmos-items.png) | ![Document viewer](docs/images/06-cosmos-document-viewer.png) |
-| Paginated items browser with filter bar | JSON viewer/editor with code folding |
+
+- Paginated browsing with continuation tokens
+- Create, update, and delete documents
+- Multi-select for batch delete with progress tracking
+- JSON viewer with syntax highlighting and code folding
+- Record detail panel with navigation (first/prev/next/last) and word wrap toggle
+
+### Query Editor
+
+| SQL Editor | Results + Record Details |
+|:---:|:---:|
 | ![Query editor](docs/images/07-cosmos-query.png) | ![Query results](docs/images/08-cosmos-query-results.png) |
-| SQL editor with syntax highlighting | Results + record details side panel |
-| ![AND/OR filter](docs/images/09-cosmos-filter-buttons.png) | ![Templates](docs/images/10-cosmos-templates.png) |
-| AND \| \|C\| \| OR filter buttons on properties | SQL templates panel |
-| ![Saved queries](docs/images/11-cosmos-saved-queries.png) | ![Import/Export](docs/images/12-cosmos-import-export.png) |
-| Saved queries with categories and favorites | Import/Export documents |
-| ![Scripts](docs/images/13-cosmos-scripts.png) | ![Metrics](docs/images/14-cosmos-metrics.png) |
-| Stored procedures / UDFs / Triggers | Container settings and metrics |
 
-### Azure Service Bus
-
-| | |
-|---|---|
-| ![SB tree](docs/images/15-sb-tree.png) | ![Peek messages](docs/images/16-sb-peek.png) |
-| Queues/Topics with A/D/S counts | Peek with body, headers, properties |
-| ![Send message](docs/images/17-sb-send.png) | ![Message actions](docs/images/18-sb-message-actions.png) |
-| Send message with queue selector | Complete, dead-letter, forward actions |
-| ![Queue settings](docs/images/19-sb-queue-settings.png) | ![Saved messages](docs/images/20-sb-saved-messages.png) |
-| Queue settings and duplicate | Saved message templates |
-
-### Redis
-
-| | |
-|---|---|
-| ![Redis tree](docs/images/21-redis-tree.png) | ![Stream entries](docs/images/22-redis-stream.png) |
-| Streams / Lists / Keys by prefix | Stream entries with consumer groups |
-| ![List entries](docs/images/23-redis-list.png) | ![Keys by prefix](docs/images/24-redis-keys.png) |
-| List viewer with pagination | Keys grouped by prefix |
-| ![Key filter](docs/images/25-redis-key-filter.png) | |
-| Key filter (SCAN MATCH) | |
-
-
-Downloads
----------
-
-Go to the Releases page to get the latest version:
-https://github.com/hendrickcastro/DataMessageExplorer/releases
-
-- Windows: DataMessageExplorer-windows.zip
-- macOS: DataMessageExplorer-macos.dmg
-
-
-Install on Windows
-------------------
-
-Extract the zip and run DataMessage Explorer.exe.
-
-
-Install on macOS
-----------------
-
-Open Terminal and paste this command:
-
-    curl -sL https://raw.githubusercontent.com/hendrickcastro/DataMessageExplorer/master/install.sh | bash
-
-This downloads the latest version, installs it in /Applications, removes macOS security restrictions, and launches the app. No warnings, no popups.
-
-Future updates are handled automatically from within the app. You only need to run this command once for the initial install.
-
-
-Azure Cosmos DB
----------------
-
-Browse databases and containers with a full explorer tree. Each container exposes items, queries, settings, metrics, import/export, stored procedures, UDFs, and triggers.
-
-Query editor:
 - SQL syntax highlighting with keyword coloring
 - Execute and cancel queries
-- Pagination with continuation tokens
 - 20+ built-in SQL templates (SELECT, WHERE, JOIN, GROUP BY, aggregates, CONTAINS, STARTSWITH, OFFSET LIMIT, spatial queries, and more)
 - Save queries with name, category, and favorite flag
 - Load saved queries from the sidebar panel
 
-Document management:
-- Browse documents in a table with dynamic columns
-- Configurable page size (20, 50, 100)
-- Column sorting
-- Timestamp formatting (epoch to UTC)
-- Create, update, and delete documents
-- Multi-select for batch delete with progress tracking
-- JSON viewer with syntax highlighting and code folding
-- Record detail panel with navigation (first, previous, next, last) and word wrap toggle
+### Filter Buttons & Templates
 
-Import and export:
-- Import from JSON files (array format or newline-delimited)
+| AND / COL / OR Buttons | SQL Templates |
+|:---:|:---:|
+| ![Filter buttons](docs/images/09-cosmos-filter-buttons.png) | ![Templates](docs/images/10-cosmos-templates.png) |
+
+- Hover over any JSON property to see **AND**, **COL**, **OR** buttons
+- One-click to append filter conditions to the query editor
+- Built-in template library for common query patterns
+
+### Saved Queries & Import/Export
+
+| Saved Queries | Import/Export |
+|:---:|:---:|
+| ![Saved queries](docs/images/11-cosmos-saved-queries.png) | ![Import/Export](docs/images/12-cosmos-import-export.png) |
+
+- Saved queries organized by categories with favorite stars
+- Import from JSON files (array or newline-delimited)
 - Export with custom WHERE clause filter
-- Preview before import
-- Item count reporting
+- Preview before import with item count reporting
 
-Container info:
+### Scripts & Metrics
+
+| Stored Procedures / UDFs / Triggers | Container Settings & Metrics |
+|:---:|:---:|
+| ![Scripts](docs/images/13-cosmos-scripts.png) | ![Metrics](docs/images/14-cosmos-metrics.png) |
+
+- Browse and view stored procedures, UDFs, and triggers with JavaScript syntax display
 - View partition key, TTL, indexing policy, unique keys, conflict resolution
 - Real-time metrics: document count, document size, index size, collection usage and quota
 
-Server-side scripts:
-- Browse and view stored procedures, UDFs, and triggers with JavaScript syntax display
+---
 
+## Azure Service Bus
 
-Azure Service Bus
------------------
+### Queue Explorer & Message Peeking
 
-Browse queues and topics with live message counts shown in the tree (Active, Dead Letter, Scheduled).
+| Queues & Topics Tree | Peek Messages |
+|:---:|:---:|
+| ![SB tree](docs/images/15-sb-tree.png) | ![Peek messages](docs/images/16-sb-peek.png) |
 
-Message peeking:
+- Queues and Topics with live **A** (Active) / **D** (Dead Letter) / **S** (Scheduled) counts
 - Peek from active queue, dead letter queue, or scheduled messages
-- Pagination with next page button
 - Message detail with Body and Headers tabs
 - JSON syntax highlighting for message bodies
 - Binary message handling with base64 display
-- Filter by sequence number
-- Multi-message selection
+- Filter by sequence number and multi-message selection
 
-Message actions:
-- Complete messages (mark as processed)
-- Dead letter messages
-- Requeue messages back to active
-- Forward messages to another queue with destination picker
-- Copy messages to a different queue
-- Purge all messages with progress tracking (safety cap at 500K)
-- Save any peeked message as a reusable template
+### Send & Message Actions
 
-Send messages:
+| Send Message | Message Actions |
+|:---:|:---:|
+| ![Send message](docs/images/17-sb-send.png) | ![Message actions](docs/images/18-sb-message-actions.png) |
+
 - Body editor with JSON syntax highlighting
 - Broker properties: Message ID, Subject, Content Type, Correlation ID, Reply To
 - Time To Live with duration picker (days, hours, minutes, seconds)
 - Application properties in JSON format
-- Force persistent delivery option
-- Save message templates with category and favorite
-- Load saved templates from sidebar
+- Complete, dead letter, requeue, forward, and copy messages
+- Purge all messages with progress tracking (safety cap at 500K)
 
-Queue administration:
+### Queue Settings & Saved Messages
+
+| Queue Settings | Saved Messages |
+|:---:|:---:|
+| ![Queue settings](docs/images/19-sb-queue-settings.png) | ![Saved messages](docs/images/20-sb-saved-messages.png) |
+
 - View and edit queue properties through the Azure Management API
 - Status control (Active, Disabled, SendDisabled, ReceiveDisabled)
-- Max delivery count, lock duration, max size
-- Default message TTL
-- Dead letter auto-forwarding configuration
-- Forwarding address (topic or queue picker)
+- Max delivery count, lock duration, max size, TTL, dead letter auto-forwarding
 - Create duplicate queue with same settings
-- Delete queue with confirmation
+- Save message templates with category and favorite for quick reuse
 
-Topics and subscriptions:
-- Browse all topics and their subscriptions
-- Live message counts per subscription (Active, Dead Letter, Scheduled)
-- Peek messages from subscriptions
-- Send messages to topics
+---
 
+## Redis
 
-Redis
------
+### Key Explorer
 
-Browse keys organized by type with support for streams, lists, and generic keys.
+| Redis Tree | Stream Entries |
+|:---:|:---:|
+| ![Redis tree](docs/images/21-redis-tree.png) | ![Stream entries](docs/images/22-redis-stream.png) |
 
-Streams:
-- Browse stream entries newest-first or oldest-first with pagination
-- Stream length display
-- Consumer group information (pending count, lag, consumer count)
-- Entry timestamp and data field display
+- Keys organized by type: Streams, Lists, and Keys by prefix
+- Stream entries with consumer group information (pending count, lag, consumer count)
+- Newest-first or oldest-first ordering with pagination
 
-Lists:
+### Lists & Keys
+
+| List Viewer | Keys by Prefix |
+|:---:|:---:|
+| ![List entries](docs/images/23-redis-list.png) | ![Keys by prefix](docs/images/24-redis-keys.png) |
+
 - Paginated list browsing (configurable page size 25-500)
-- Index and value display
-- Previous/Next navigation
-
-Generic keys:
-- Support for string, hash, set, sorted set, and bitmap types
+- Keys grouped by prefix with value viewer for string, hash, set, sorted set, bitmap
 - Hex dump display for binary data with ASCII column
 - Embedded XML extraction from .NET binary blobs
-- ASCII fragment extraction from serialized objects
-- Base64 decoding display
 
-Write operations:
-- Stream: add entries with field/value pairs (auto-ID or manual)
-- List: LPUSH or RPUSH with bulk input support
-- String: SET with overwrite option
-- Hash: set field/value pairs with key generator
+### Key Filter & Write Operations
 
-Key browsing modes:
-- Grouped mode: keys organized by prefix
-- Flat mode: paginated flat list with load more
-- Per-connection SCAN MATCH patterns (glob support)
+| Key Filter |
+|:---:|
+| ![Key filter](docs/images/25-redis-key-filter.png) |
+
+- Per-connection `SCAN MATCH` patterns (glob support)
+- Write operations: Stream add, LPUSH/RPUSH, SET, Hash set
 - Bounded scanning to prevent UI blocking
 
+---
 
-Connection Management
----------------------
+## SQL Server
 
-Add connections for any of the three services through a unified dialog:
-- Service type selector (Cosmos DB, Service Bus, Redis)
-- Connection name and connection string (masked input)
-- Category organization with color picker
-- Test connection button with async validation
-- Edit and delete connections from the tree context menu
-- Categories are scoped per service (separate "Production" for Cosmos DB and Service Bus)
+### Database Explorer
 
-All connections are stored locally in ~/.datamessage_explorer/connections.json with encoded connection strings.
+| Object Tree | Column Details |
+|:---:|:---:|
+| ![SQL tree](docs/images/26-sql-tree.png) | ![SQL columns](docs/images/32-sql-columns.png) |
 
+- Databases listed from `sys.databases`
+- Tables, Views, Stored Procedures, and Functions organized in folders
+- First 200 objects loaded by default, total count in folder label (e.g. "Tables (200 of 100,492)")
+- Expand tables/views to see columns with data types and nullability
+- Supports Azure SQL Database and on-premise SQL Server
 
-Workspace Export and Import
----------------------------
+### T-SQL Query Editor
 
-Export your entire workspace (connections, saved queries, saved messages, UI settings) to a zip file. Import on another machine or share with team members.
+| Query Editor | Query Results |
+|:---:|:---:|
+| ![SQL query](docs/images/27-sql-query.png) | ![SQL results](docs/images/28-sql-query-results.png) |
 
-Export options:
-- Select what to include (config, saved objects)
-- Single zip file output
+- T-SQL editor with execute and cancel
+- Non-blocking query execution (runs in subprocess, UI stays responsive)
+- Cancel kills the subprocess immediately
+- Results grid with row detail viewer (JSON format)
+- Save queries with name, category, and favorite
+- Save As to create copies without overwriting
 
-Import options:
-- Merge mode: keep existing items, add only new ones
-- Overwrite mode: replace all with imported content
+### Templates & Syntax Highlighting
+
+| T-SQL Templates | Syntax Highlighting |
+|:---:|:---:|
+| ![SQL templates](docs/images/33-sql-templates.png) | ![SQL syntax](docs/images/34-sql-syntax-highlight.png) |
+
+- 14 built-in T-SQL templates: SELECT, JOIN, GROUP BY, CTE, Window Functions, Insert, Update, Delete, Offset Fetch, Table Info, Index Info, and more
+- VS Code-inspired dark theme highlighting: blue keywords, yellow functions, orange strings, green numbers, muted green comments, light blue @variables
+
+### Data Browser & Object Definitions
+
+| Table Data Browser | SP/Function Definition |
+|:---:|:---:|
+| ![SQL data](docs/images/29-sql-data-panel.png) | ![SQL definition](docs/images/30-sql-definition-panel.png) |
+
+- Paginated data viewer with Load More (50 rows per page)
+- Column headers with double-click to auto-resize
+- Row click shows full record as JSON
+- View stored procedure and function SQL definitions with syntax highlighting
+
+### Advanced Filter
+
+| Filter Dialog |
+|:---:|
+| ![SQL filter](docs/images/31-sql-filter-dialog.png) |
+
+- Filter by Schema and/or Name
+- Match modes: Contains, Exact, Starts With
+- Combine with AND/OR operators
+- Filter results use indexed `sys.tables` queries for instant results
+- Results cached for fast re-expand
+
+---
+
+## Workspace Export & Import
+
+Export your entire workspace (connections, saved queries, saved messages, UI settings) to a single zip file. Import on another machine or share with team members.
+
+- **Merge mode**: keep existing items, add only new ones
+- **Overwrite mode**: replace all with imported content
 - Summary of imported items
 
+---
 
-Saved Queries and Messages
---------------------------
+## User Interface
 
-Saved queries (Cosmos DB):
-- Save SQL queries with name, category, and favorite flag
-- Organize by category with subcategories
-- Load into any active query tab or open a new tab
-- Per-connection storage
+### Theme & Zoom
 
-Saved messages (Service Bus):
-- Save full message templates (body, headers, properties)
-- Organize by category with favorites
-- Load into send message panels
-- Support for both queue and topic templates
-- Per-connection storage
+- **Dark theme** (VS Code-inspired) and **light theme** with one-click toggle
+- Per-panel zoom with `Ctrl+/-` (`Cmd+/-` on macOS), reset with `Ctrl+0` (`Cmd+0`)
+- Zoom targets the panel under the cursor, each sub-pane zooms independently
 
-Both are accessible from the sidebar bottom panel, which switches context automatically based on the selected tree item.
+### Layout
 
-
-User Interface
---------------
-
-Theme:
-- Dark theme (VS Code-inspired) and light theme
-- Toggle from toolbar button
-- Applies to all panels, JSON viewers, and syntax highlighting
-- Theme preference persisted
-
-Zoom:
-- Per-panel zoom with Ctrl+/- (Cmd+/- on macOS)
-- Reset zoom with Ctrl+0 (Cmd+0 on macOS)
-- Zoom targets the panel under the cursor
-- Splitter-aware: each sub-pane of a split panel zooms independently
-- Zoom levels persisted per panel
-
-Layout:
-- Horizontal splitter: sidebar on the left, tabbed panel area on the right
-- Sidebar has vertical splitter: connection tree on top, saved items on bottom
+- Horizontal splitter: sidebar (left) + tabbed panel area (right)
+- Sidebar vertical splitter: connection tree (top) + saved items (bottom)
 - Multiple tabs for simultaneous work across databases, queues, and keys
 - Resizable panes everywhere
 
-Keyboard shortcuts:
-- F5: refresh Service Bus queue and subscription counters
-- Ctrl+/- or Cmd+-: zoom in/out on current panel
-- Ctrl+0 or Cmd+0: reset zoom
+### Keyboard Shortcuts
 
-Status bar:
-- Operation status messages on the left
-- Progress bar for batch operations (delete, purge, export)
-- Selection counter on the right
+| Shortcut | Action |
+|----------|--------|
+| `F5` | Refresh Service Bus queue/subscription counters |
+| `Ctrl+/-` / `Cmd+/-` | Zoom in/out on current panel |
+| `Ctrl+0` / `Cmd+0` | Reset zoom |
 
+---
 
-Data Storage
-------------
+## Data Storage
 
-All user data is stored locally under ~/.datamessage_explorer/:
+All user data is stored locally under `~/.datamessage_explorer/`:
 
-- connections.json: connection list with encoded connection strings and category colors
-- ui_settings.json: zoom levels, page sizes, Redis patterns, viewer preferences
-- explorer_visibility.json: hidden service sections
-- saved_queries/: SQL files organized by category with metadata index
-- saved_messages/: JSON payload files organized by category with metadata index
+| File | Description |
+|------|-------------|
+| `connections.json` | Connection list with encoded connection strings and category colors |
+| `ui_settings.json` | Zoom levels, page sizes, Redis patterns, viewer preferences |
+| `explorer_visibility.json` | Hidden service sections |
+| `saved_queries/` | SQL files organized by category with metadata index |
+| `saved_messages/` | JSON payload files organized by category with metadata index |
 
+---
 
-System Requirements
--------------------
+## System Requirements
 
-- Windows 10 or later
-- macOS 11 (Big Sur) or later
-- No additional runtime dependencies required (standalone executable)
+| Platform | Minimum Version |
+|----------|----------------|
+| Windows | 10 or later |
+| macOS | 11 (Big Sur) or later |
 
+No additional runtime dependencies required (standalone executable).
 
-License
--------
+---
+
+## Downloads
+
+Go to the [Releases](https://github.com/hendrickcastro/DataMessageExplorer/releases) page to get the latest version:
+
+| Platform | File |
+|----------|------|
+| Windows | `DataMessageExplorer-windows.zip` |
+| macOS | `DataMessageExplorer-macos.dmg` |
+
+---
+
+## License
 
 Proprietary. All rights reserved.
